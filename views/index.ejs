@@ -1,0 +1,87 @@
+<%- include('partials/header.ejs') %>
+
+<section id="first-page">
+  <div id="hero">
+    <h1>Bookeepr</h1>
+  </div>
+  <div id="desc">
+    <p>keep track of book you read with us.</p>
+  </div>
+  <div id="start-btn">
+    <button type="button">Start</button>
+  </div>
+</section>
+
+<section id="second-page">
+  <%if(!locals.username){%>
+  <div id="form-container">
+    <form action="/post" method="POST" id="form">
+      <input
+        type="text"
+        name="username"
+        id="username"
+        autocomplete="off"
+        placeholder="Username"
+      />
+      <input
+        type="text"
+        name="book"
+        id="book"
+        autocomplete="off"
+        placeholder="Book Name"
+      />
+      <input
+        type="text"
+        name="note"
+        id="note"
+        autocomplete="off"
+        placeholder="Notes"
+      />
+      <input
+        type="text"
+        name="isbn"
+        id="isbn"
+        autocomplete="off"
+        placeholder="ISBN"
+      />
+      <input
+        type="text"
+        name="rating"
+        id="rating"
+        placeholder="Rating out of 5"
+        autocomplete="off"
+      />
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
+  <%}else{%>
+  <div id="user-container">
+    <div id="post-username">
+      <h1><%= username %></h1>
+    </div>
+    <div id="post-sort">
+      <a href="/" method="GET" name="bookName">Name</a>
+      <a href="/" method="GET" name="ratings">Ratings</a>
+      <a href="/" method="GET" name="recentlyAdded">Recently Added</a>
+    </div>
+  </div>
+  <div id="post-container">
+    <div id="post-image">
+      <img src="<%= image %>" alt="<%= book %>" />
+    </div>
+    <div id="post-content">
+        <div id="post-title"><h1><%= title %></h1></div>
+        <div id="post-note"><p><%= note %></p></div>
+        <div id="post-buttons">
+            <input type="submit" value="Add Another" name="anotherPost" id="another-post">
+            <input type="button" value="Edit" name="edit" id="post-edit">
+            <input type="button" value="Delete" name="delete" id="post-delete">
+
+        </div>
+    </div>
+  </div>
+
+  <%}%>
+</section>
+
+<%- include('partials/footer.ejs') %>

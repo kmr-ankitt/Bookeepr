@@ -1,0 +1,24 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:gilroy;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+}
+body{
+    background-color: #000;
+    color: #fff;
+}
+
+#first-page{
+    height: 100%;
+    width: 100%;
+}
+
+#second-page{
+    height: 100%;
+    width: 100%;
+}
