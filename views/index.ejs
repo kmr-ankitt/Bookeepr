@@ -55,9 +55,9 @@
   </div>
 </section>
 
-
 <section id="third-page">
-  <% for (let ele of result) { %>
+  
+  <% let id= 0; for (let ele of result) { %>
 
   <div id="user-container">
     <div id="post-username">
@@ -80,23 +80,68 @@
       <div id="post-title"><h1><%= ele.title %></h1></div>
       <div id="post-note"><p><%= ele.note %></p></div>
       <div id="post-buttons">
-          <input
-            type="submit"
-            value="Add Another"
-            name="anotherPost"
-            id="another-post"
-            onclick="location.href='#second-page';"
-          />
-        <form action="/patch" method="patch">
-          <input type="button" value="Edit" name="edit" id="post-edit" />
-        </form>
-        <form action="/delete" method="delete">
-          <input type="button" value="Delete" name="delete" id="post-delete" />
+        <input
+          type="button"
+          value="Add Another"
+          name="anotherPost"
+          id="another-post"
+          onclick="location.href='#second-page';"
+        />
+        <input type="button" value="Edit" name="edit" id="post-edit" onclick="location.href='#forth-page';" />
+        <%id = ele.id %>
+        <form action="/delete" method="POST">
+          <input type="hidden" name="id" value="<%= ele.id %>" />
+          <input type="submit" value="Delete" name="delete" id="post-delete" />
         </form>
       </div>
     </div>
   </div>
   <% } %>
+</section>
+
+<section id="forth-page">
+  <div id="form-container">
+    <form action="/edit" method="patch" id="form">
+      <input
+        type="text"
+        name="username"
+        id="username"
+        autocomplete="off"
+        placeholder="Username"
+      />
+      <input
+        type="text"
+        name="book"
+        id="book"
+        autocomplete="off"
+        placeholder="Book Name"
+      />
+      <input
+        type="text"
+        name="note"
+        id="note"
+        autocomplete="off"
+        placeholder="Notes"
+      />
+      <input
+        type="text"
+        name="isbn"
+        id="isbn"
+        autocomplete="off"
+        placeholder="ISBN"
+      />
+      <input
+        type="text"
+        name="rating"
+        id="rating"
+        placeholder="Rating out of 5"
+        autocomplete="off"
+      />
+
+      <input type="hidden" name="id" value="<%id%>" />
+      <input type="submit" value="Update" id="update-btn"/>
+    </form>
+  </div>
 </section>
 
 <%- include('partials/footer.ejs') %>

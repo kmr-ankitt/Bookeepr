@@ -13,17 +13,8 @@ body{
     color: #fff;
 }
 
-#first-page{
+#first-page , #second-page , #third-page, #forth-page{
     height: 100%;
     width: 100%;
 }
 
-#second-page{
-    height: 100%;
-    width: 100%;
-}
-
-#third-page{
-    height: 100%;
-    width: 100%;
-}

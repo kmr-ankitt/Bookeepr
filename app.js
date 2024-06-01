@@ -36,15 +36,7 @@ const getCurrentDate = () => {
 // Get method
 app.get("/", async (req, res) => {
     const result = await db.query("SELECT * FROM book")
-    console.log(result.rows)
-    // const user = result.rows[0];
-    // const cover = `https://covers.openlibrary.org/b/isbn/${user.isbn}-M.jpg`;
     res.render("index.ejs", {
-        // username: user.username,
-        // image : cover,
-        // book : user.book,
-        // title : user.title,
-        // note: user.note,
         result : result.rows
     });
 });
@@ -63,7 +55,19 @@ app.post("/post", async (req, res) => {
   }
 });
 
-
+// Patch Request
+app.patch("/edit", async(req,res)=>{
+  try {
+    const date = getCurrentDate();
+    const result = await db.query(
+      "UPDATE book SET username = $1, book = $2, isbn = $3, rating = $4, added = $5, note = $6 WHERE id = $7",
+      [req.body.username, req.body.book, req.body.isbn, req.body.rating, date, req.body.note, req.body.id]
+    );
+    res.redirect("/")
+  } catch (error) {
+    console.log(error);
+  }
+})
 
 // Listen Method
 app.listen(port, () => {

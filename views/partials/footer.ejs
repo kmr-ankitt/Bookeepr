@@ -1,2 +1,17 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var forthPage = document.getElementById("forth-page");
+    var postEdit = document.getElementById("post-edit");
+    var updateBtn = document.getElementById("update-btn");
+
+    forthPage.setAttribute("hidden", true);
+    
+    postEdit.addEventListener("click", function() {
+        forthPage.removeAttribute("hidden");
+    });
+});
+
+</script>
 </body>
 </html>
