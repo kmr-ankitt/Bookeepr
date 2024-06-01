@@ -13,7 +13,6 @@
 </section>
 
 <section id="second-page">
-  <%if(!locals.username){%>
   <div id="form-container">
     <form action="/post" method="POST" id="form">
       <input
@@ -54,10 +53,15 @@
       <input type="submit" value="Submit" />
     </form>
   </div>
-  <%}else{%>
+</section>
+
+
+<section id="third-page">
+  <% for (let ele of result) { %>
+
   <div id="user-container">
     <div id="post-username">
-      <h1><%= username %></h1>
+      <h1><%= ele.username %></h1>
     </div>
     <div id="post-sort">
       <a href="/" method="GET" name="bookName">Name</a>
@@ -67,21 +71,32 @@
   </div>
   <div id="post-container">
     <div id="post-image">
-      <img src="<%= image %>" alt="<%= book %>" />
+      <img
+        src="https://covers.openlibrary.org/b/isbn/<%=ele.isbn%>-M.jpg"
+        alt="<%= ele.book %>"
+      />
     </div>
     <div id="post-content">
-        <div id="post-title"><h1><%= title %></h1></div>
-        <div id="post-note"><p><%= note %></p></div>
-        <div id="post-buttons">
-            <input type="submit" value="Add Another" name="anotherPost" id="another-post">
-            <input type="button" value="Edit" name="edit" id="post-edit">
-            <input type="button" value="Delete" name="delete" id="post-delete">
-
-        </div>
+      <div id="post-title"><h1><%= ele.title %></h1></div>
+      <div id="post-note"><p><%= ele.note %></p></div>
+      <div id="post-buttons">
+          <input
+            type="submit"
+            value="Add Another"
+            name="anotherPost"
+            id="another-post"
+            onclick="location.href='#second-page';"
+          />
+        <form action="/patch" method="patch">
+          <input type="button" value="Edit" name="edit" id="post-edit" />
+        </form>
+        <form action="/delete" method="delete">
+          <input type="button" value="Delete" name="delete" id="post-delete" />
+        </form>
+      </div>
     </div>
   </div>
-
-  <%}%>
+  <% } %>
 </section>
 
 <%- include('partials/footer.ejs') %>

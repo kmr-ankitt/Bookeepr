@@ -36,17 +36,20 @@ const getCurrentDate = () => {
 // Get method
 app.get("/", async (req, res) => {
     const result = await db.query("SELECT * FROM book")
-    const user = result.rows[0];
-    const cover = `https://covers.openlibrary.org/b/isbn/${user.isbn}-M.jpg`;
+    console.log(result.rows)
+    // const user = result.rows[0];
+    // const cover = `https://covers.openlibrary.org/b/isbn/${user.isbn}-M.jpg`;
     res.render("index.ejs", {
-        username: user.username,
-        image : cover,
-        book : user.book,
-        title : user.title,
-        note: user.note,
+        // username: user.username,
+        // image : cover,
+        // book : user.book,
+        // title : user.title,
+        // note: user.note,
+        result : result.rows
     });
 });
 
+// Post request
 app.post("/post", async (req, res) => {
   try {
     const date = getCurrentDate();
@@ -59,6 +62,8 @@ app.post("/post", async (req, res) => {
     console.log(error);
   }
 });
+
+
 
 // Listen Method
 app.listen(port, () => {
