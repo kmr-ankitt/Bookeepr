@@ -33,17 +33,12 @@
 </section>
 
 <section id="third-page">
-  <form action="/" method="GET">
+  <form action="/" method="GET" id="sort-btn">
     <button type="submit" name="sort" value="bookName">Name</button>
     <button type="submit" name="sort" value="ratings">Ratings</button>
     <button type="submit" name="sort" value="recentlyAdded">Recently Added</button>
   </form>
   <% let id = 0; for (let ele of result) { %>
-  <div id="user-container">
-    <div id="post-username">
-      <h1><%= ele.username %></h1>
-    </div>
-  </div>
   <div id="post-container">
     <div id="post-image">
       <img src="https://covers.openlibrary.org/b/isbn/<%= ele.isbn %>-M.jpg" alt="<%= ele.book %>" />
@@ -51,6 +46,9 @@
     <div id="post-content">
       <div id="post-title"><h1><%= ele.book %></h1></div>
       <div id="post-note"><p><%= ele.note %></p></div>
+      <div id="post-username">
+        <h5><%= ele.username %></h5>
+      </div>
       <div id="post-buttons">
         <input type="button" value="Add Another" name="anotherPost" id="another-post" onclick="location.href='#second-page';" />
         <input type="button" value="Edit" name="edit" id="post-edit" onclick="location.href='#forth-page-<%= ele.id %>';" />
