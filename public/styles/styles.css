@@ -1,5 +1,30 @@
+ @font-face {
+   font-family: mentra;
+   src: url(/fonts/MENTRA.otf);
+ }
+ @font-face {
+   font-family: beckan;
+   src: url(/fonts/Beckan.otf);
+ }
+ @font-face {
+   font-family: gill sans;
+   src: url(/fonts/GillSans.otf);
+ }
+ @font-face {
+   font-family: gill roy;
+   src: url(/fonts/Gilroy-Black.ttf);
+ }
+ @font-face {
+   font-family: heavitas;
+   src: url(/fonts/Heavitas.ttf);
+ }
+ @font-face {
+   font-family: pearce;
+   src: url(/fonts/Pearce.ttf);
+ }
+ 
 *{
-    margin:0;
+    margin:0; 
     padding:0;
     box-sizing:border-box;
     font-family:gilroy;
@@ -16,5 +41,17 @@ body{
 #first-page , #second-page , #third-page, #forth-page{
     height: 100%;
     width: 100%;
+}
+
+#first-page{
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#hero h1{
+    font-size: 7rem;
 }
 
