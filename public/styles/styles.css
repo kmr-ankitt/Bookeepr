@@ -43,6 +43,7 @@ body{
 #first-page , #second-page , #third-page, #forth-page{
     height: 100%;
     width: 100%;
+    border: 2px solid white;
 }
 
 /* First page */
@@ -76,6 +77,63 @@ body{
 }
 
 #start-btn input:hover{
+    background-color: #191A19;
+    color: #EEE4B1;
+    transition: .4s;
+}
+
+/* Second Page */
+
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.form-container form{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-self: center;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    gap: 1.5rem;
+}
+
+.form-container form #username , .form-container form #book , .form-container form button , .form-container form #note {
+    grid-column: span 2;
+}
+
+.form-container form input , .form-container form button {
+    font-family: gill roy;
+    font-size: 1rem;
+    padding-left: 1rem;
+    height: 4rem;
+    justify-content: center;
+}
+
+
+.form-container form #note{
+    height: 7rem;
+}
+.form-container form ::placeholder{
+    text-align: center;
+}
+
+
+.form-container form button{
+    padding: .5rem 5rem;
+    background-color: #EEE4B1;
+    border: none;
+    font-size: .8rem;
+    font-family: pearce;
+    text-transform: uppercase;
+}
+
+.form-container form button:hover{
     background-color: #191A19;
     color: #EEE4B1;
     transition: .4s;
