@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bookeepr</title>
+</head>
+<body>
+
 <%- include('partials/header.ejs') %>
 
 <section id="first-page">
@@ -5,143 +12,90 @@
     <h1>Bookeepr</h1>
   </div>
   <div id="desc">
-    <p>keep track of book you read with us.</p>
+    <p>Keep track of the books you read with us.</p>
   </div>
   <div id="start-btn">
-    <button type="button">Start</button>
+    <input type="button" value="Start" name="" id="newPost" onclick="location.href='#second-page';" />
   </div>
 </section>
 
 <section id="second-page">
-  <div id="form-container">
+  <div class="form-container">
     <form action="/post" method="POST" id="form">
-      <input
-        type="text"
-        name="username"
-        id="username"
-        autocomplete="off"
-        placeholder="Username"
-      />
-      <input
-        type="text"
-        name="book"
-        id="book"
-        autocomplete="off"
-        placeholder="Book Name"
-      />
-      <input
-        type="text"
-        name="note"
-        id="note"
-        autocomplete="off"
-        placeholder="Notes"
-      />
-      <input
-        type="text"
-        name="isbn"
-        id="isbn"
-        autocomplete="off"
-        placeholder="ISBN"
-      />
-      <input
-        type="text"
-        name="rating"
-        id="rating"
-        placeholder="Rating out of 5"
-        autocomplete="off"
-      />
-      <input type="submit" value="Submit" />
+      <input type="text" name="username" autocomplete="off" placeholder="Username" />
+      <input type="text" name="book" autocomplete="off" placeholder="Book Name" />
+      <input type="text" name="note" autocomplete="off" placeholder="Notes" />
+      <input type="text" name="isbn" autocomplete="off" placeholder="ISBN" />
+      <input type="text" name="rating" placeholder="Rating out of 5" autocomplete="off" />
+      <button type="submit">Submit</button>
     </form>
   </div>
 </section>
 
 <section id="third-page">
-  
-  <% let id= 0; for (let ele of result) { %>
-
+  <form action="/" method="GET">
+    <button type="submit" name="sort" value="bookName">Name</button>
+    <button type="submit" name="sort" value="ratings">Ratings</button>
+    <button type="submit" name="sort" value="recentlyAdded">Recently Added</button>
+  </form>
+  <% let id = 0; for (let ele of result) { %>
   <div id="user-container">
     <div id="post-username">
       <h1><%= ele.username %></h1>
     </div>
-    <div id="post-sort">
-      <a href="/" method="GET" name="bookName">Name</a>
-      <a href="/" method="GET" name="ratings">Ratings</a>
-      <a href="/" method="GET" name="recentlyAdded">Recently Added</a>
-    </div>
   </div>
   <div id="post-container">
     <div id="post-image">
-      <img
-        src="https://covers.openlibrary.org/b/isbn/<%=ele.isbn%>-M.jpg"
-        alt="<%= ele.book %>"
-      />
+      <img src="https://covers.openlibrary.org/b/isbn/<%= ele.isbn %>-M.jpg" alt="<%= ele.book %>" />
     </div>
     <div id="post-content">
-      <div id="post-title"><h1><%= ele.title %></h1></div>
+      <div id="post-title"><h1><%= ele.book %></h1></div>
       <div id="post-note"><p><%= ele.note %></p></div>
       <div id="post-buttons">
-        <input
-          type="button"
-          value="Add Another"
-          name="anotherPost"
-          id="another-post"
-          onclick="location.href='#second-page';"
-        />
-        <input type="button" value="Edit" name="edit" id="post-edit" onclick="location.href='#forth-page';" />
-        <%id = ele.id %>
-        <form action="/delete" method="POST">
+        <input type="button" value="Add Another" name="anotherPost" id="another-post" onclick="location.href='#second-page';" />
+        <input type="button" value="Edit" name="edit" id="post-edit" onclick="location.href='#forth-page-<%= ele.id %>';" />
+        <% id = ele.id %>
+        <form action="/?_method=DELETE" method="POST">
           <input type="hidden" name="id" value="<%= ele.id %>" />
           <input type="submit" value="Delete" name="delete" id="post-delete" />
         </form>
       </div>
     </div>
   </div>
+
+  <!-- Update Form -->
+  <section id="forth-page-<%= ele.id %>" class="forth-page" hidden>
+    <div class="form-container">
+      <form action="/update?_method=PATCH" method="POST" id="form">
+        <input type="text" name="newusername" value="<%= ele.username %>" autocomplete="off" placeholder="Username" />
+        <input type="text" name="newbook" value="<%= ele.book %>" autocomplete="off" placeholder="Book Name" />
+        <input type="text" name="newnote" value="<%= ele.note %>" autocomplete="off" placeholder="Notes" />
+        <input type="text" name="newisbn" value="<%= ele.isbn %>" autocomplete="off" placeholder="ISBN" />
+        <input type="text" name="newrating" value="<%= ele.rating %>" placeholder="Rating out of 5" autocomplete="off" />
+        <input type="hidden" name="newid" value="<%= ele.id %>" />
+        <button type="submit">Update</button>
+      </form>
+    </div>
+  </section>
+
   <% } %>
 </section>
 
-<section id="forth-page">
-  <div id="form-container">
-    <form action="/edit" method="patch" id="form">
-      <input
-        type="text"
-        name="username"
-        id="username"
-        autocomplete="off"
-        placeholder="Username"
-      />
-      <input
-        type="text"
-        name="book"
-        id="book"
-        autocomplete="off"
-        placeholder="Book Name"
-      />
-      <input
-        type="text"
-        name="note"
-        id="note"
-        autocomplete="off"
-        placeholder="Notes"
-      />
-      <input
-        type="text"
-        name="isbn"
-        id="isbn"
-        autocomplete="off"
-        placeholder="ISBN"
-      />
-      <input
-        type="text"
-        name="rating"
-        id="rating"
-        placeholder="Rating out of 5"
-        autocomplete="off"
-      />
-
-      <input type="hidden" name="id" value="<%id%>" />
-      <input type="submit" value="Update" id="update-btn"/>
-    </form>
-  </div>
-</section>
-
 <%- include('partials/footer.ejs') %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var forthPage = document.querySelectorAll(".forth-page");
+  var postEditButtons = document.querySelectorAll("#post-edit");
+
+  postEditButtons.forEach((button, index) => {
+    button.addEventListener("click", function() {
+      forthPage[index].removeAttribute("hidden");
+    });
+  });
+});
+</script>
+
+</body>
+</html>
