@@ -26,3 +26,10 @@ Start the server
 ```bash
 npm app.js
 ```
+
+## Screenshots
+
+![image](https://github.com/kmr-ankitt/Bookeepr/assets/90329779/7f661c43-c1c4-4143-be11-850b6fe1791e) 
+
+![image](https://github.com/kmr-ankitt/Bookeepr/assets/90329779/598bcdef-fef8-40b0-8981-a401b5580a0a)
+
