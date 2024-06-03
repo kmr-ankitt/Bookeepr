@@ -34,14 +34,18 @@ html, body{
     width: 100%;
 }
 body{
-    background-color: #000;
-    color: #fff;
+    background-color: #191A19;
+    /* color: #D8E9A8; */
+    /* color: #EAE1E1; */
+    color: #EEE4B1;
 }
 
 #first-page , #second-page , #third-page, #forth-page{
     height: 100%;
     width: 100%;
 }
+
+/* First page */
 
 #first-page{
     display: flex;
@@ -53,5 +57,26 @@ body{
 
 #hero h1{
     font-size: 7rem;
+    font-family:mentra;
+    letter-spacing: .2rem;
 }
 
+#desc {
+    font-size: 1.4rem;
+    color: #EAE1E1;
+}
+
+#start-btn input{
+    padding: .5rem 5rem;
+    background-color: #EEE4B1;
+    border: none;
+    font-size: .8rem;
+    font-family: pearce;
+    text-transform: uppercase;
+}
+
+#start-btn input:hover{
+    background-color: #191A19;
+    color: #EEE4B1;
+    transition: .4s;
+}
