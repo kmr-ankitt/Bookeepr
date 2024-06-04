@@ -24,7 +24,7 @@ npm i
 
 Start the server
 ```bash
-npm app.js
+node app.js
 ```
 
 ## Screenshots
